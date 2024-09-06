@@ -1,4 +1,5 @@
 ﻿using Octopus.Elements.Buttons.Behavior;
+using Octopus.Elements.Tables;
 using Octopus.Elements.ToolStrip.ToolStripMenuItems;
 using System;
 using System.Collections.Generic;
@@ -25,5 +26,9 @@ namespace Octopus
             ToolStripMenuItemsBehavior.ToolStripMenuItemTextChangeColorOnClick(fileToolStripMenuItem);
         }
 
+        private void tabControl_bottomPanel_tableTabPage_Layout(object sender, LayoutEventArgs e)
+        {
+            tabControl_bottomPanel_tableTabPage.Controls.Add(DGVTable.CreateTable(new Dictionary<string, string>()));
+        }
     }
 }
