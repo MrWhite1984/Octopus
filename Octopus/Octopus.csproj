@@ -131,6 +131,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -155,6 +156,10 @@
   <ItemGroup>
     <Content Include="download.ico" />
     <Content Include="OctopusIcon.ico" />
+    <None Include="Resources\RefreshDBBtn.png" />
+    <None Include="Resources\ExecBtn1.png" />
+    <None Include="Resources\StopServerBtn1.png" />
+    <None Include="Resources\StartServerBtn1.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">

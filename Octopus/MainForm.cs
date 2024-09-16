@@ -42,27 +42,37 @@ namespace Octopus
             else
             {
                 var reply = NetHandler.StartServer();
-                consoleTabPage_console.Text = reply.replyMessage;
-                reply = NetHandler.Send("51");
-                foreach (var chunk in reply.replyMessage.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries))
+                if(reply.replyType == ReplyType.Success)
                 {
-                    dbSelector.Items.Add(chunk);
+                    consoleTabPage_console.Text = reply.replyMessage;
+                    reply = NetHandler.Send("51");
+                    foreach (var chunk in reply.replyMessage.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        dbSelector.Items.Add(chunk);
+                    }
+                    workSpaceTabControl_bottomPanel.SelectedIndex = 1;
+                    startOctoServButton.Visible = false;
+                    stopOctoServButton.Visible = true;
+                    sendRequestButton.Enabled = true;
+                    workSpace_dataBasesListPanel_header_refreshButton.Enabled = true;
                 }
-                workSpaceTabControl_bottomPanel.SelectedIndex = 1;
-                startOctoServButton.Enabled = false;
-                stopOctoServButton.Enabled = true;
             }
         }
 
         private void stopOctoServButton_Click(object sender, EventArgs e)
         {
             var reply = NetHandler.StopServer();
-            dbSelector.Items.Clear();
-            dbSelector.Text = "Выберите базу данных";
-            workSpaceTabControl_bottomPanel.SelectedIndex = 1;
-            consoleTabPage_console.Text = reply.replyMessage;
-            startOctoServButton.Enabled = true;
-            stopOctoServButton.Enabled = false;
+            if(reply.replyType == ReplyType.Success)
+            {
+                dbSelector.Items.Clear();
+                dbSelector.Text = "Выберите базу данных";
+                workSpaceTabControl_bottomPanel.SelectedIndex = 1;
+                consoleTabPage_console.Text = reply.replyMessage;
+                startOctoServButton.Visible = true;
+                stopOctoServButton.Visible = false;
+                sendRequestButton.Enabled = false;
+                workSpace_dataBasesListPanel_header_refreshButton.Enabled = false;
+            }
         }
 
         private void sendRequestButton_Click(object sender, EventArgs e)
@@ -136,6 +146,14 @@ namespace Octopus
         private void workSpaceTabControl_bottomPanel_Layout(object sender, LayoutEventArgs e)
         {
             tabControl_bottomPanel_tableTabPage.Controls.Add(DGVTable.CreateTable(new Dictionary<string, string>()));
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            Prompter.SetToolTip(startOctoServButton, "Запуск сервера");
+            Prompter.SetToolTip(stopOctoServButton, "Остановка сервера");
+            Prompter.SetToolTip(sendRequestButton, "Выполнить запрос");
+            Prompter.SetToolTip(workSpace_dataBasesListPanel_header_refreshButton, "Обновить список баз данных");
         }
     }
 }

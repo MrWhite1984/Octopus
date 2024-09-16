@@ -35,14 +35,12 @@ namespace Octopus
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.designPanel1 = new System.Windows.Forms.Panel();
             this.workSpace = new System.Windows.Forms.Panel();
             this.inputConsole_TextBox = new System.Windows.Forms.TextBox();
             this.designPanel5 = new System.Windows.Forms.Panel();
             this.toolBar = new System.Windows.Forms.Panel();
-            this.sendRequestButton = new System.Windows.Forms.Button();
-            this.startOctoServButton = new System.Windows.Forms.Button();
-            this.stopOctoServButton = new System.Windows.Forms.Button();
             this.designPanel4 = new System.Windows.Forms.Panel();
             this.workSpaceTabControl_bottomPanel = new System.Windows.Forms.TabControl();
             this.tabControl_bottomPanel_tableTabPage = new System.Windows.Forms.TabPage();
@@ -53,7 +51,6 @@ namespace Octopus
             this.workSpace_dataBasesListPanel_designPanel = new System.Windows.Forms.Panel();
             this.workSpace_dataBasesListPanel_header = new System.Windows.Forms.Panel();
             this.dbSelector = new System.Windows.Forms.ComboBox();
-            this.workSpace_dataBasesListPanel_header_refreshButton = new System.Windows.Forms.Button();
             this.designPanel3 = new System.Windows.Forms.Panel();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.topBarMenuStrip = new System.Windows.Forms.MenuStrip();
@@ -63,6 +60,13 @@ namespace Octopus
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.octoServToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.octopusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Prompter = new System.Windows.Forms.ToolTip(this.components);
+            this.querryWizardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendRequestButton = new System.Windows.Forms.Button();
+            this.startOctoServButton = new System.Windows.Forms.Button();
+            this.stopOctoServButton = new System.Windows.Forms.Button();
+            this.workSpace_dataBasesListPanel_header_refreshButton = new System.Windows.Forms.Button();
             this.workSpace.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.workSpaceTabControl_bottomPanel.SuspendLayout();
@@ -77,7 +81,7 @@ namespace Octopus
             // 
             this.designPanel1.BackColor = System.Drawing.Color.Aqua;
             this.designPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.designPanel1.Location = new System.Drawing.Point(0, 28);
+            this.designPanel1.Location = new System.Drawing.Point(0, 30);
             this.designPanel1.Name = "designPanel1";
             this.designPanel1.Size = new System.Drawing.Size(1664, 1);
             this.designPanel1.TabIndex = 1;
@@ -91,9 +95,9 @@ namespace Octopus
             this.workSpace.Controls.Add(this.workSpaceTabControl_bottomPanel);
             this.workSpace.Controls.Add(this.workSpace_dataBasesListPanel);
             this.workSpace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workSpace.Location = new System.Drawing.Point(0, 29);
+            this.workSpace.Location = new System.Drawing.Point(0, 31);
             this.workSpace.Name = "workSpace";
-            this.workSpace.Size = new System.Drawing.Size(1664, 939);
+            this.workSpace.Size = new System.Drawing.Size(1664, 937);
             this.workSpace.TabIndex = 2;
             // 
             // inputConsole_TextBox
@@ -103,14 +107,14 @@ namespace Octopus
             this.inputConsole_TextBox.Location = new System.Drawing.Point(220, 31);
             this.inputConsole_TextBox.Multiline = true;
             this.inputConsole_TextBox.Name = "inputConsole_TextBox";
-            this.inputConsole_TextBox.Size = new System.Drawing.Size(1444, 549);
+            this.inputConsole_TextBox.Size = new System.Drawing.Size(1444, 547);
             this.inputConsole_TextBox.TabIndex = 4;
             // 
             // designPanel5
             // 
             this.designPanel5.BackColor = System.Drawing.Color.Aqua;
             this.designPanel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.designPanel5.Location = new System.Drawing.Point(220, 580);
+            this.designPanel5.Location = new System.Drawing.Point(220, 578);
             this.designPanel5.Name = "designPanel5";
             this.designPanel5.Size = new System.Drawing.Size(1444, 1);
             this.designPanel5.TabIndex = 3;
@@ -128,34 +132,6 @@ namespace Octopus
             this.toolBar.Size = new System.Drawing.Size(1444, 31);
             this.toolBar.TabIndex = 2;
             // 
-            // sendRequestButton
-            // 
-            this.sendRequestButton.Location = new System.Drawing.Point(76, 0);
-            this.sendRequestButton.Name = "sendRequestButton";
-            this.sendRequestButton.Size = new System.Drawing.Size(30, 30);
-            this.sendRequestButton.TabIndex = 6;
-            this.sendRequestButton.UseVisualStyleBackColor = true;
-            this.sendRequestButton.Click += new System.EventHandler(this.sendRequestButton_Click);
-            // 
-            // startOctoServButton
-            // 
-            this.startOctoServButton.Location = new System.Drawing.Point(4, 0);
-            this.startOctoServButton.Name = "startOctoServButton";
-            this.startOctoServButton.Size = new System.Drawing.Size(30, 30);
-            this.startOctoServButton.TabIndex = 4;
-            this.startOctoServButton.UseVisualStyleBackColor = true;
-            this.startOctoServButton.Click += new System.EventHandler(this.startOctoServButton_Click);
-            // 
-            // stopOctoServButton
-            // 
-            this.stopOctoServButton.Enabled = false;
-            this.stopOctoServButton.Location = new System.Drawing.Point(40, 0);
-            this.stopOctoServButton.Name = "stopOctoServButton";
-            this.stopOctoServButton.Size = new System.Drawing.Size(30, 30);
-            this.stopOctoServButton.TabIndex = 5;
-            this.stopOctoServButton.UseVisualStyleBackColor = true;
-            this.stopOctoServButton.Click += new System.EventHandler(this.stopOctoServButton_Click);
-            // 
             // designPanel4
             // 
             this.designPanel4.BackColor = System.Drawing.Color.Aqua;
@@ -170,7 +146,7 @@ namespace Octopus
             this.workSpaceTabControl_bottomPanel.Controls.Add(this.tabControl_bottomPanel_tableTabPage);
             this.workSpaceTabControl_bottomPanel.Controls.Add(this.tabControl_bottomPanel_consoleTabPage);
             this.workSpaceTabControl_bottomPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.workSpaceTabControl_bottomPanel.Location = new System.Drawing.Point(220, 581);
+            this.workSpaceTabControl_bottomPanel.Location = new System.Drawing.Point(220, 579);
             this.workSpaceTabControl_bottomPanel.Name = "workSpaceTabControl_bottomPanel";
             this.workSpaceTabControl_bottomPanel.SelectedIndex = 0;
             this.workSpaceTabControl_bottomPanel.Size = new System.Drawing.Size(1444, 358);
@@ -207,7 +183,7 @@ namespace Octopus
             this.consoleTabPage_console.Multiline = true;
             this.consoleTabPage_console.Name = "consoleTabPage_console";
             this.consoleTabPage_console.ReadOnly = true;
-            this.consoleTabPage_console.Size = new System.Drawing.Size(1430, 324);
+            this.consoleTabPage_console.Size = new System.Drawing.Size(1430, 323);
             this.consoleTabPage_console.TabIndex = 0;
             // 
             // workSpace_dataBasesListPanel
@@ -220,7 +196,7 @@ namespace Octopus
             this.workSpace_dataBasesListPanel.Location = new System.Drawing.Point(0, 0);
             this.workSpace_dataBasesListPanel.Margin = new System.Windows.Forms.Padding(0);
             this.workSpace_dataBasesListPanel.Name = "workSpace_dataBasesListPanel";
-            this.workSpace_dataBasesListPanel.Size = new System.Drawing.Size(220, 939);
+            this.workSpace_dataBasesListPanel.Size = new System.Drawing.Size(220, 937);
             this.workSpace_dataBasesListPanel.TabIndex = 0;
             // 
             // designPanel2
@@ -229,7 +205,7 @@ namespace Octopus
             this.designPanel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.designPanel2.Location = new System.Drawing.Point(219, 31);
             this.designPanel2.Name = "designPanel2";
-            this.designPanel2.Size = new System.Drawing.Size(1, 908);
+            this.designPanel2.Size = new System.Drawing.Size(1, 906);
             this.designPanel2.TabIndex = 2;
             // 
             // workSpace_dataBasesListPanel_designPanel
@@ -264,15 +240,6 @@ namespace Octopus
             this.dbSelector.Text = "Выберите базу данных";
             this.dbSelector.SelectedValueChanged += new System.EventHandler(this.dbSelector_SelectedValueChanged);
             // 
-            // workSpace_dataBasesListPanel_header_refreshButton
-            // 
-            this.workSpace_dataBasesListPanel_header_refreshButton.Dock = System.Windows.Forms.DockStyle.Right;
-            this.workSpace_dataBasesListPanel_header_refreshButton.Location = new System.Drawing.Point(189, 0);
-            this.workSpace_dataBasesListPanel_header_refreshButton.Name = "workSpace_dataBasesListPanel_header_refreshButton";
-            this.workSpace_dataBasesListPanel_header_refreshButton.Size = new System.Drawing.Size(30, 30);
-            this.workSpace_dataBasesListPanel_header_refreshButton.TabIndex = 1;
-            this.workSpace_dataBasesListPanel_header_refreshButton.UseVisualStyleBackColor = true;
-            // 
             // designPanel3
             // 
             this.designPanel3.BackColor = System.Drawing.Color.Aqua;
@@ -299,10 +266,11 @@ namespace Octopus
             this.topBarMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.topBarMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.querryWizardToolStripMenuItem});
             this.topBarMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.topBarMenuStrip.Name = "topBarMenuStrip";
-            this.topBarMenuStrip.Size = new System.Drawing.Size(1664, 28);
+            this.topBarMenuStrip.Size = new System.Drawing.Size(1664, 30);
             this.topBarMenuStrip.TabIndex = 0;
             this.topBarMenuStrip.Text = "menuStrip1";
             // 
@@ -310,10 +278,11 @@ namespace Octopus
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createToolStripMenuItem,
-            this.openToolStripMenuItem});
+            this.openToolStripMenuItem,
+            this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
             this.fileToolStripMenuItem.Text = "Файл";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.FileToolStripMenuItem_Click);
             // 
@@ -321,13 +290,13 @@ namespace Octopus
             // 
             this.createToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.createToolStripMenuItem.Name = "createToolStripMenuItem";
-            this.createToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+            this.createToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.createToolStripMenuItem.Text = "Создать...";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(159, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
             this.openToolStripMenuItem.Text = "Открыть...";
             // 
             // settingsToolStripMenuItem
@@ -336,7 +305,7 @@ namespace Octopus
             this.octoServToolStripMenuItem,
             this.octopusToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
             this.settingsToolStripMenuItem.Text = "Настройки";
             // 
             // octoServToolStripMenuItem
@@ -352,6 +321,61 @@ namespace Octopus
             this.octopusToolStripMenuItem.Text = "Octopus";
             this.octopusToolStripMenuItem.Click += new System.EventHandler(this.octopusToolStripMenuItem_Click);
             // 
+            // querryWizardToolStripMenuItem
+            // 
+            this.querryWizardToolStripMenuItem.Name = "querryWizardToolStripMenuItem";
+            this.querryWizardToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.querryWizardToolStripMenuItem.Text = "Мастер запросов";
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(166, 26);
+            this.saveToolStripMenuItem.Text = "Сохранить";
+            // 
+            // sendRequestButton
+            // 
+            this.sendRequestButton.Enabled = false;
+            this.sendRequestButton.Image = global::Octopus.Properties.Resources.ExecBtn;
+            this.sendRequestButton.Location = new System.Drawing.Point(40, 0);
+            this.sendRequestButton.Name = "sendRequestButton";
+            this.sendRequestButton.Size = new System.Drawing.Size(30, 30);
+            this.sendRequestButton.TabIndex = 6;
+            this.sendRequestButton.UseVisualStyleBackColor = true;
+            this.sendRequestButton.Click += new System.EventHandler(this.sendRequestButton_Click);
+            // 
+            // startOctoServButton
+            // 
+            this.startOctoServButton.Image = global::Octopus.Properties.Resources.StartServerBtn;
+            this.startOctoServButton.Location = new System.Drawing.Point(4, 0);
+            this.startOctoServButton.Name = "startOctoServButton";
+            this.startOctoServButton.Size = new System.Drawing.Size(30, 30);
+            this.startOctoServButton.TabIndex = 4;
+            this.startOctoServButton.UseVisualStyleBackColor = true;
+            this.startOctoServButton.Click += new System.EventHandler(this.startOctoServButton_Click);
+            // 
+            // stopOctoServButton
+            // 
+            this.stopOctoServButton.Image = global::Octopus.Properties.Resources.StopServerBtn;
+            this.stopOctoServButton.Location = new System.Drawing.Point(4, 0);
+            this.stopOctoServButton.Name = "stopOctoServButton";
+            this.stopOctoServButton.Size = new System.Drawing.Size(30, 30);
+            this.stopOctoServButton.TabIndex = 5;
+            this.stopOctoServButton.UseVisualStyleBackColor = true;
+            this.stopOctoServButton.Visible = false;
+            this.stopOctoServButton.Click += new System.EventHandler(this.stopOctoServButton_Click);
+            // 
+            // workSpace_dataBasesListPanel_header_refreshButton
+            // 
+            this.workSpace_dataBasesListPanel_header_refreshButton.Dock = System.Windows.Forms.DockStyle.Right;
+            this.workSpace_dataBasesListPanel_header_refreshButton.Enabled = false;
+            this.workSpace_dataBasesListPanel_header_refreshButton.Image = global::Octopus.Properties.Resources.RefreshDBBtn;
+            this.workSpace_dataBasesListPanel_header_refreshButton.Location = new System.Drawing.Point(189, 0);
+            this.workSpace_dataBasesListPanel_header_refreshButton.Name = "workSpace_dataBasesListPanel_header_refreshButton";
+            this.workSpace_dataBasesListPanel_header_refreshButton.Size = new System.Drawing.Size(30, 30);
+            this.workSpace_dataBasesListPanel_header_refreshButton.TabIndex = 1;
+            this.workSpace_dataBasesListPanel_header_refreshButton.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -365,6 +389,7 @@ namespace Octopus
             this.Text = "Octopus";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.workSpace.ResumeLayout(false);
             this.workSpace.PerformLayout();
             this.toolBar.ResumeLayout(false);
@@ -410,5 +435,8 @@ namespace Octopus
         private Button sendRequestButton;
         private ToolStripMenuItem octoServToolStripMenuItem;
         private ToolStripMenuItem octopusToolStripMenuItem;
+        private ToolTip Prompter;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripMenuItem querryWizardToolStripMenuItem;
     }
 }
