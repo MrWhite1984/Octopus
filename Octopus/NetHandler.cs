@@ -1,4 +1,5 @@
 ﻿using OctoLib;
+using OctoLib.DataTypes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -32,11 +33,11 @@ namespace Octopus
                     netStream = tcpClient.GetStream();
                     octoServWork = true;
                 }
-                return new Reply("sc", "Сервер запущен. Подключение установлено");
+                return new Reply(ReplyType.Success, "Сервер запущен. Подключение установлено");
             }
             catch (Exception ex)
             {
-                return new Reply("ex", ex.Message);
+                return new Reply(ReplyType.Error, ex.Message);
             }
         }
 
@@ -49,11 +50,11 @@ namespace Octopus
                     process.Kill();
                     octoServWork = false;
                 }
-                return new Reply("sc", "Сервер остановлен");
+                return new Reply(ReplyType.Success, "Сервер остановлен");
             }
             catch(Exception ex)
             {
-                return new Reply("er", ex.Message);
+                return new Reply(ReplyType.Error, ex.Message);
             }
         }
         public static Reply Send(string request)

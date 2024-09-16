@@ -1,4 +1,5 @@
 ﻿using OctoLib;
+using OctoLib.DataTypes;
 
 namespace OctoServ
 {
@@ -88,7 +89,7 @@ namespace OctoServ
                                 else
                                 {
                                     reply = DataBaseHandler.CreateDB(chunks[2]);
-                                    if(reply.replyType == "er")
+                                    if(reply.replyType == ReplyType.Error)
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
                                         TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -105,7 +106,7 @@ namespace OctoServ
                                 else
                                 {
                                     reply = DataBaseHandler.CreateDB(chunks[3]);
-                                    if (reply.replyType == "er")
+                                    if (reply.replyType == ReplyType.Error)
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
                                         TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -124,7 +125,7 @@ namespace OctoServ
                                     break;
                                 }
                                 reply = DataBaseHandler.CreateDictionary(chunks[2]);
-                                if (reply.replyType == "er")
+                                if (reply.replyType == ReplyType.Error)
                                     TextFormatter.WriteLineRed(reply.replyMessage!);
                                 else
                                     TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -146,7 +147,7 @@ namespace OctoServ
                                 else
                                 {
                                     reply = DataBaseHandler.CreateDB(chunks[2]);
-                                    if (reply.replyType == "er")
+                                    if (reply.replyType == ReplyType.Error)
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
                                         TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -158,7 +159,7 @@ namespace OctoServ
                                 else
                                 {
                                     reply = DataBaseHandler.CreateDB(chunks[2]);
-                                    if (reply.replyType == "er")
+                                    if (reply.replyType == ReplyType.Error)
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
                                         TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -258,7 +259,7 @@ namespace OctoServ
                                             break;
                                         }
                                         reply = DataBaseHandler.RenameDB(chunks[3]);
-                                        if (reply.replyType == "er")
+                                        if (reply.replyType == ReplyType.Error)
                                         {
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
                                             break;
@@ -278,7 +279,7 @@ namespace OctoServ
                                             break;
                                         }
                                         reply = DataBaseHandler.RenameDB(chunks[4]);
-                                        if (reply.replyType == "er")
+                                        if (reply.replyType == ReplyType.Error)
                                         {
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
                                             break;
@@ -307,7 +308,7 @@ namespace OctoServ
                                 {
                                     case ("БД"):
                                         reply = DataBaseHandler.GetAllDB();
-                                        if (reply.replyType == "er")
+                                        if (reply.replyType == ReplyType.Error)
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
                                         else
                                             TextFormatter.WriteLineYellow(reply.replyMessage!);
@@ -319,7 +320,7 @@ namespace OctoServ
                                             break;
                                         }
                                         reply = DataBaseHandler.GetAllDB();
-                                        if(reply.replyType == "er")
+                                        if(reply.replyType == ReplyType.Error)
                                             TextFormatter.WriteLineRed(reply.replyMessage!); 
                                         else
                                             TextFormatter.WriteLineYellow(reply.replyMessage!);
@@ -331,7 +332,7 @@ namespace OctoServ
                                             break;
                                         }
                                         reply = DataBaseHandler.GetAllDictionaryFromDB();
-                                        if (reply.replyType == "er")
+                                        if (reply.replyType == ReplyType.Error)
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
                                         else
                                             TextFormatter.WriteLineYellow(reply.replyMessage!);
@@ -368,7 +369,7 @@ namespace OctoServ
                                 }
                                 string dictName = toTableChunks[2];
                                 reply = DataBaseHandler.AddDataToDictionary(kvPair[0], kvPair[1], dictName);
-                                if (reply.replyType == "er")
+                                if (reply.replyType == ReplyType.Error)
                                     TextFormatter.WriteLineRed(reply.replyMessage!);
                                 else
                                     TextFormatter.WriteLineBlue(reply.replyMessage!);

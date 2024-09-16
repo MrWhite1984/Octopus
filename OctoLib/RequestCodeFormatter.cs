@@ -35,28 +35,16 @@ namespace OctoLib
                     chunksUpperCase[1] == "DB" ||
                     chunksUpperCase[1] == "DATABASE"))
                 {
-                    reply = "21 ";
-                    for (int i = 2; i < chunks.Length; i++)
-                    {
-                        reply += chunks[i];
-                    }
+                    reply = "21 "+ chunks[2];
                 }
                 else if (chunks.Length > 3 && chunksUpperCase[1] == "БАЗУ" && chunksUpperCase[1] == "ДАННЫХ")
                 {
-                    reply = "21 ";
-                    for (int i = 2; i < chunks.Length; i++)
-                    {
-                        reply += chunks[i];
-                    }
+                    reply = "21 " + chunks[3];
                 }
                 else if (chunks.Length > 2 &&
                     (chunksUpperCase[1] == "СЛОВАРЬ" || chunksUpperCase[1] == "DICTIONARY"))
                 {
-                    reply = "22 ";
-                    for (int i = 2; i < chunks.Length; i++)
-                    {
-                        reply += chunks[i];
-                    }
+                    reply = "22 " + chunks[2];
                 }
                 else
                 {
