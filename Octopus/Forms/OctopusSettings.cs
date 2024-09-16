@@ -27,7 +27,7 @@ namespace Octopus.Forms
         private void viewDBPathButton_Click(object sender, EventArgs e)
         {
             octoServPathFD.ShowDialog();
-            if (octoServPathFD.FileName.Split('\\').Last() == "OctopusServ.exe")
+            if (octoServPathFD.FileName.Split('\\').Last() == "OctoServ.exe")
                 octoServPathTB.Text = octoServPathFD.FileName;
             else
                 MessageBox.Show(octoServPathFD.FileName);

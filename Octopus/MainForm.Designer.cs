@@ -176,6 +176,7 @@ namespace Octopus
             this.workSpaceTabControl_bottomPanel.Size = new System.Drawing.Size(1444, 358);
             this.workSpaceTabControl_bottomPanel.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.workSpaceTabControl_bottomPanel.TabIndex = 1;
+            this.workSpaceTabControl_bottomPanel.Layout += new System.Windows.Forms.LayoutEventHandler(this.workSpaceTabControl_bottomPanel_Layout);
             // 
             // tabControl_bottomPanel_tableTabPage
             // 
@@ -335,19 +336,19 @@ namespace Octopus
             this.octoServToolStripMenuItem,
             this.octopusToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
             this.settingsToolStripMenuItem.Text = "Настройки";
             // 
             // octoServToolStripMenuItem
             // 
             this.octoServToolStripMenuItem.Name = "octoServToolStripMenuItem";
-            this.octoServToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.octoServToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.octoServToolStripMenuItem.Text = "OctoServ";
             // 
             // octopusToolStripMenuItem
             // 
             this.octopusToolStripMenuItem.Name = "octopusToolStripMenuItem";
-            this.octopusToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.octopusToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.octopusToolStripMenuItem.Text = "Octopus";
             this.octopusToolStripMenuItem.Click += new System.EventHandler(this.octopusToolStripMenuItem_Click);
             // 

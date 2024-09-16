@@ -2,12 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Octopus
 {
@@ -19,29 +16,44 @@ namespace Octopus
         static Process process;
         public static bool octoServWork = false;
 
-        public static void StartServer()
+        public static Reply StartServer()
         {
-            if (!octoServWork)
+            try
             {
-                tcpClient = new TcpClient();
-                ProcessStartInfo startInfo = new ProcessStartInfo();
-                startInfo.FileName = Program.configuration.octoServPath;
-                startInfo.WindowStyle = ProcessWindowStyle.Hidden;
-                startInfo.CreateNoWindow = true;
-                process = Process.Start(startInfo);
-                tcpClient.Connect(IPAddress.Parse("127.0.0.1"), 1111);
-                netStream = tcpClient.GetStream();
-                octoServWork = true;
+                if (!octoServWork)
+                {
+                    tcpClient = new TcpClient();
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.FileName = Program.configuration.octoServPath;
+                    startInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                    startInfo.CreateNoWindow = true;
+                    process = Process.Start(startInfo);
+                    tcpClient.Connect(Program.configuration.address, Program.configuration.port);
+                    netStream = tcpClient.GetStream();
+                    octoServWork = true;
+                }
+                return new Reply("sc", "Сервер запущен. Подключение установлено");
+            }
+            catch (Exception ex)
+            {
+                return new Reply("ex", ex.Message);
             }
         }
 
-        public static void StopServer()
+        public static Reply StopServer()
         {
-            if (octoServWork)
+            try
             {
-
-                process.Kill();
-                octoServWork= false;
+                if (octoServWork)
+                {
+                    process.Kill();
+                    octoServWork = false;
+                }
+                return new Reply("sc", "Сервер остановлен");
+            }
+            catch(Exception ex)
+            {
+                return new Reply("er", ex.Message);
             }
         }
         public static Reply Send(string request)

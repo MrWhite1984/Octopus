@@ -28,7 +28,7 @@ namespace OctoServ
                     if (chunks.Count() < 2)
                         replyToClient = new Reply("er", "Не указано название базы данных");
                     else
-                        replyToClient = DataBaseHandler.CreateDB(DataBaseHandler.AssembleName(chunks, 1));
+                        replyToClient = DataBaseHandler.CreateDB(chunks[1]);
                     break;
                 case ("22"):
                     if (chunks.Count() < 2)
@@ -36,14 +36,14 @@ namespace OctoServ
                     else if(DataBaseHandler.usingDb == "")
                         replyToClient = new Reply("er", "Рабочая база данных не задана");
                     else
-                        replyToClient = DataBaseHandler.CreateDictionary(DataBaseHandler.AssembleName(chunks, 1));
+                        replyToClient = DataBaseHandler.CreateDictionary(chunks[1]);
                     break;
                 case "3":
                     if (chunks.Count() < 2)
                         replyToClient = new Reply("er", "Не указано название базы данных");
                     else
                     {
-                        string name = DataBaseHandler.AssembleName(chunks, 1);
+                        string name = chunks[1];
                         if (!File.Exists(Path.Combine(Program.configuration.octopusFilesPath, name + ".octp")))
                             replyToClient = new Reply("er", "Базы данных с таким именем не существует");
                         else
@@ -106,7 +106,7 @@ namespace OctoServ
                             replyToClient = new Reply("er", "Рабочая база данных не задана");
                             break;
                         }
-                        replyToClient = DataBaseHandler.RenameDB(DataBaseHandler.AssembleName(chunks, 1));
+                        replyToClient = DataBaseHandler.RenameDB(chunks[1]);
                         break;
                     }
                 case "51":

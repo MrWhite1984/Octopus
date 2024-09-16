@@ -87,7 +87,7 @@ namespace OctoServ
                                     TextFormatter.WriteLineRed("Не указано название базы данных");
                                 else
                                 {
-                                    reply = DataBaseHandler.CreateDB(DataBaseHandler.AssembleName(chunks, 2));
+                                    reply = DataBaseHandler.CreateDB(chunks[2]);
                                     if(reply.replyType == "er")
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
@@ -104,7 +104,7 @@ namespace OctoServ
                                     TextFormatter.WriteLineRed("Не указано название базы данных");
                                 else
                                 {
-                                    reply = DataBaseHandler.CreateDB(DataBaseHandler.AssembleName(chunks, 3));
+                                    reply = DataBaseHandler.CreateDB(chunks[3]);
                                     if (reply.replyType == "er")
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
@@ -123,7 +123,7 @@ namespace OctoServ
                                     TextFormatter.WriteLineRed("Рабочая база данных не задана");
                                     break;
                                 }
-                                reply = DataBaseHandler.CreateDictionary(DataBaseHandler.AssembleName(chunks, 2));
+                                reply = DataBaseHandler.CreateDictionary(chunks[2]);
                                 if (reply.replyType == "er")
                                     TextFormatter.WriteLineRed(reply.replyMessage!);
                                 else
@@ -145,7 +145,7 @@ namespace OctoServ
                                     TextFormatter.WriteLineRed("Не указано название базы данных");
                                 else
                                 {
-                                    reply = DataBaseHandler.CreateDB(DataBaseHandler.AssembleName(chunks, 2));
+                                    reply = DataBaseHandler.CreateDB(chunks[2]);
                                     if (reply.replyType == "er")
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
@@ -157,7 +157,7 @@ namespace OctoServ
                                     TextFormatter.WriteLineRed("Не указано название базы данных");
                                 else
                                 {
-                                    reply = DataBaseHandler.CreateDB(DataBaseHandler.AssembleName(chunks, 2));
+                                    reply = DataBaseHandler.CreateDB(chunks[2]);
                                     if (reply.replyType == "er")
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
@@ -172,7 +172,7 @@ namespace OctoServ
 
 
                     case ("ИСПОЛЬЗОВАТЬ"):
-                        string name = DataBaseHandler.AssembleName(chunks, 1);
+                        string name = chunks[1];
                         if (!File.Exists(Path.Combine(octopusFilesDirectoryPath, name + ".octp")))
                         {
                             TextFormatter.WriteLineRed("Базы данных с таким именем не существует");
@@ -183,7 +183,7 @@ namespace OctoServ
                         break;
 
                     case ("USE"):
-                        string name2 = DataBaseHandler.AssembleName(chunks, 1);
+                        string name2 = chunks[1];
                         if (!File.Exists(Path.Combine(octopusFilesDirectoryPath, name2 + ".octp")))
                         {
                             TextFormatter.WriteLineRed("Базы данных с таким именем не существует");
@@ -257,7 +257,7 @@ namespace OctoServ
                                             TextFormatter.WriteLineRed("Рабочая база данных не задана");
                                             break;
                                         }
-                                        reply = DataBaseHandler.RenameDB(DataBaseHandler.AssembleName(chunks, 3));
+                                        reply = DataBaseHandler.RenameDB(chunks[3]);
                                         if (reply.replyType == "er")
                                         {
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
@@ -277,7 +277,7 @@ namespace OctoServ
                                             TextFormatter.WriteLineRed("Рабочая база данных не задана");
                                             break;
                                         }
-                                        reply = DataBaseHandler.RenameDB(DataBaseHandler.AssembleName(chunks, 4));
+                                        reply = DataBaseHandler.RenameDB(chunks[4]);
                                         if (reply.replyType == "er")
                                         {
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
@@ -366,7 +366,7 @@ namespace OctoServ
                                     TextFormatter.WriteLineRed("Ошибка запроса");
                                     break;
                                 }
-                                string dictName = DataBaseHandler.AssembleName(toTableChunks, 2);
+                                string dictName = toTableChunks[2];
                                 reply = DataBaseHandler.AddDataToDictionary(kvPair[0], kvPair[1], dictName);
                                 if (reply.replyType == "er")
                                     TextFormatter.WriteLineRed(reply.replyMessage!);

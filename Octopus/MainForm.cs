@@ -29,7 +29,6 @@ namespace Octopus
 
         private void tabControl_bottomPanel_tableTabPage_Layout(object sender, LayoutEventArgs e)
         {
-            tabControl_bottomPanel_tableTabPage.Controls.Add(DGVTable.CreateTable(new Dictionary<string, string>()));
         }
 
         private void startOctoServButton_Click(object sender, EventArgs e)
@@ -41,14 +40,14 @@ namespace Octopus
             }
             else
             {
-                NetHandler.StartServer();
-                var reply = NetHandler.Send("51");
+                var reply = NetHandler.StartServer();
+                consoleTabPage_console.Text = reply.replyMessage;
+                reply = NetHandler.Send("51");
                 foreach (var chunk in reply.replyMessage.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     dbSelector.Items.Add(chunk);
                 }
                 workSpaceTabControl_bottomPanel.SelectedIndex = 1;
-                consoleTabPage_console.Text = "Сервер запущен";
                 startOctoServButton.Enabled = false;
                 stopOctoServButton.Enabled = true;
             }
@@ -56,10 +55,11 @@ namespace Octopus
 
         private void stopOctoServButton_Click(object sender, EventArgs e)
         {
-            NetHandler.StopServer();
+            var reply = NetHandler.StopServer();
             dbSelector.Items.Clear();
+            dbSelector.Text = "Выберите базу данных";
             workSpaceTabControl_bottomPanel.SelectedIndex = 1;
-            consoleTabPage_console.Text = "Сервер остановлен";
+            consoleTabPage_console.Text = reply.replyMessage;
             startOctoServButton.Enabled = true;
             stopOctoServButton.Enabled = false;
         }
@@ -84,23 +84,20 @@ namespace Octopus
                     else if (reply.replyType == "er")
                     {
                         workSpaceTabControl_bottomPanel.SelectedIndex = 1;
-                        consoleTabPage_console.ForeColor = Color.Red;
                         consoleTabPage_console.Text = TextHandler.FormatToTextBox(reply.replyMessage);
-                        consoleTabPage_console.ForeColor = Color.Black;
                     }
                     else if (reply.replyType == "dt")
                     {
                         workSpaceTabControl_bottomPanel.SelectedIndex = 0;
-
+                        tabControl_bottomPanel_tableTabPage.Controls.Clear();
+                        tabControl_bottomPanel_tableTabPage.Controls.Add(DGVTable.CreateTable(reply.data));
                     }
                 }
             }
             catch
             {
                 workSpaceTabControl_bottomPanel.SelectedIndex = 1;
-                consoleTabPage_console.ForeColor = Color.Red;
                 consoleTabPage_console.Text = "Ошибка выплнения запроса";
-                consoleTabPage_console.ForeColor = Color.Black;
             }
         }
 
@@ -135,5 +132,9 @@ namespace Octopus
             octoSettingsForm.ShowDialog();
         }
 
+        private void workSpaceTabControl_bottomPanel_Layout(object sender, LayoutEventArgs e)
+        {
+            tabControl_bottomPanel_tableTabPage.Controls.Add(DGVTable.CreateTable(new Dictionary<string, string>()));
+        }
     }
 }

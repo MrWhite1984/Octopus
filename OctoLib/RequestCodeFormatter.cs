@@ -11,32 +11,37 @@ namespace OctoLib
         public static string FormatRequest(string request)
         {
             var chunks = request.Split(' ');
-            string reply = "";
-            if (chunks[0].ToUpper() == "СТОП" ||
-                chunks[0].ToUpper() == "STOP" ||
-                chunks[0] == "0")
-                reply = "0";
-            else if (chunks[0].ToUpper() == "CONF" ||
-                chunks[0].ToUpper() == "CONFIGURATION")
-                reply = "1";
-            else if (chunks[0].ToUpper() == "ИЗМЕНИТЬ"||
-                chunks[0].ToUpper() == "CHANGE")
+            List<string> chunksUpperCase = new List<string>();
+            foreach (var chunk in chunks)
             {
-                
+                chunksUpperCase.Add(chunk.ToUpper());
             }
-            else if (chunks[0].ToUpper() == "СОЗДАТЬ"||
-                chunks[0].ToUpper() == "CREATE")
-                if(chunks.Length >2 && (chunks[1].ToUpper() == "БД" ||
-                    chunks[1].ToUpper() == "DB" ||
-                    chunks[1].ToUpper() == "DATABASE"))
+            string reply = "";
+            if (chunksUpperCase[0] == "СТОП" ||
+                chunksUpperCase[0] == "STOP" ||
+                chunksUpperCase[0] == "0")
+                reply = "0";
+            else if (chunksUpperCase[0] == "CONF" ||
+                chunksUpperCase[0] == "CONFIGURATION")
+                reply = "1";
+            else if (chunksUpperCase[0] == "ИЗМЕНИТЬ" ||
+                chunksUpperCase[0] == "CHANGE")
+            {
+
+            }
+            else if (chunksUpperCase[0] == "СОЗДАТЬ" ||
+                chunksUpperCase[0] == "CREATE")
+                if (chunks.Length > 2 && (chunksUpperCase[1] == "БД" ||
+                    chunksUpperCase[1] == "DB" ||
+                    chunksUpperCase[1] == "DATABASE"))
                 {
                     reply = "21 ";
-                    for(int i = 2; i<chunks.Length; i++)
+                    for (int i = 2; i < chunks.Length; i++)
                     {
                         reply += chunks[i];
                     }
                 }
-                else if (chunks.Length > 3 && chunks[1].ToUpper() == "БАЗУ" && chunks[2].ToUpper() == "ДАННЫХ")
+                else if (chunks.Length > 3 && chunksUpperCase[1] == "БАЗУ" && chunksUpperCase[1] == "ДАННЫХ")
                 {
                     reply = "21 ";
                     for (int i = 2; i < chunks.Length; i++)
@@ -45,7 +50,7 @@ namespace OctoLib
                     }
                 }
                 else if (chunks.Length > 2 &&
-                    (chunks[1].ToUpper() == "СЛОВАРЬ" || chunks[1].ToUpper() == "DICTIONARY"))
+                    (chunksUpperCase[1] == "СЛОВАРЬ" || chunksUpperCase[1] == "DICTIONARY"))
                 {
                     reply = "22 ";
                     for (int i = 2; i < chunks.Length; i++)
@@ -53,6 +58,38 @@ namespace OctoLib
                         reply += chunks[i];
                     }
                 }
+                else
+                {
+
+                }
+            else if (chunksUpperCase[0] == "ПОЛУЧИТЬ" ||
+                        chunksUpperCase[0] == "GET" ||
+                        chunksUpperCase[0] == "SELECT")
+                    if (chunks.Length > 2 && (chunksUpperCase[1] == "СПИСОК" ||
+                        chunksUpperCase[1] == "LIST"))
+                    {
+                        if (chunksUpperCase[2] == "БД" ||
+                            (chunks.Length > 3 && chunksUpperCase[2] == "БАЗ" && chunksUpperCase[3] == "ДАННЫХ") ||
+                            chunksUpperCase[2] == "DB" ||
+                            chunksUpperCase[2] == "DATABASE")
+                            reply = "51";
+                    }  
+                    else if (chunks.Length > 3 && (chunks[1].ToUpper() == "ВСЕ"||
+                        chunks[1].ToUpper() == "*"||
+                        chunks[1].ToUpper() == "ALL") && 
+                        (chunks[2].ToUpper() == "FROM" ||
+                        chunks[2].ToUpper() == "ИЗ"))
+                    {
+                        if (chunksUpperCase.Contains("ГДЕ"))
+                        {
+                            
+                        }
+                        else
+                        {
+                            reply = $"7 {chunks[3]}";
+                        }
+                    }
+
                    
 
             return reply;
