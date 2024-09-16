@@ -67,7 +67,7 @@ namespace OctoServ
                                 break;
                             }
                             Program.configuration.port = newPort;
-                            File.WriteAllText("OctoServConfig.json", Configuration.SetConfiguration(Program.configuration));
+                            File.WriteAllText(Properties.Resources.OctoServConfigFileName, Configuration.SetConfiguration(Program.configuration));
                             replyToClient = new Reply(ReplyType.Success, "Порт изменен\nДля работы новых настроек перезапутите сервер");
                         }
                         catch
@@ -88,7 +88,7 @@ namespace OctoServ
                             break;
                         }
                         Program.configuration.octopusFilesPath = chunks[2];
-                        File.WriteAllText("OctoServConfig.json", Configuration.SetConfiguration(Program.configuration));
+                        File.WriteAllText(Properties.Resources.OctoServConfigFileName, Configuration.SetConfiguration(Program.configuration));
                         replyToClient = new Reply(ReplyType.Success, "Путь изменен\nДля работы новых настроек перезапутите сервер");
                         break;
                     }
@@ -96,7 +96,7 @@ namespace OctoServ
                 case "41":
                     if (chunks.Count() == 2)
                     {
-                        replyToClient = new Reply(ReplyType.Error, "Ошибочный запрос");
+                        replyToClient = new Reply(ReplyType.Error, Properties.Resources.InvalidRequestText);
                         break;
                     }
                     else
@@ -135,42 +135,42 @@ namespace OctoServ
                     break;
                 case "7":
                     if (chunks.Count() < 2)
-                        replyToClient = new Reply(ReplyType.Error, "Ошибочный запрос");
+                        replyToClient = new Reply(ReplyType.Error, Properties.Resources.InvalidRequestText);
                     else
                         replyToClient = DataBaseHandler.GetAllDataFromDictionary(chunks[1]);
                     break;
                 case "711":
                     chunks2 = command.Split('\'', StringSplitOptions.RemoveEmptyEntries);
                     if (chunks2.Count() < 3)
-                        replyToClient = new Reply(ReplyType.Error, "Ошибочный запрос");
+                        replyToClient = new Reply(ReplyType.Error, Properties.Resources.InvalidRequestText);
                     else
                         replyToClient = DataBaseHandler.GetDataFromDictionaryByKey(chunks[1], chunks2[2]);
                     break;
                 case "712":
                     chunks2 = command.Split('\'', StringSplitOptions.RemoveEmptyEntries);
                     if (chunks2.Count() < 3)
-                        replyToClient = new Reply(ReplyType.Error, "Ошибочный запрос");
+                        replyToClient = new Reply(ReplyType.Error, Properties.Resources.InvalidRequestText);
                     else
                         replyToClient = DataBaseHandler.GetDataFromDictionaryByPartOfKey(chunks[1], chunks2[2]);
                     break;
                 case "721":
                     chunks2 = command.Split('\'', StringSplitOptions.RemoveEmptyEntries);
                     if (chunks2.Count() < 3)
-                        replyToClient = new Reply(ReplyType.Error, "Ошибочный запрос");
+                        replyToClient = new Reply(ReplyType.Error, Properties.Resources.InvalidRequestText);
                     else
                         replyToClient = DataBaseHandler.GetDataFromDictionaryByValue(chunks[1], chunks2[2]);
                     break;
                 case "722":
                     chunks2 = command.Split('\'', StringSplitOptions.RemoveEmptyEntries);
                     if (chunks2.Count() < 3)
-                        replyToClient = new Reply(ReplyType.Error, "Ошибочный запрос");
+                        replyToClient = new Reply(ReplyType.Error, Properties.Resources.InvalidRequestText);
                     else
                         replyToClient = DataBaseHandler.GetDataFromDictionaryByPartOfValue(chunks[1], chunks2[2]);
                     break;
 
 
                 default:
-                    replyToClient = new Reply(ReplyType.Error, "Неизвестная команда");
+                    replyToClient = new Reply(ReplyType.Error, Properties.Resources.UnknownCommandText);
                     break;
 
             }

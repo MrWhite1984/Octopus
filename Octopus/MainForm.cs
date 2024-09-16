@@ -150,10 +150,10 @@ namespace Octopus
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Prompter.SetToolTip(startOctoServButton, "Запуск сервера");
-            Prompter.SetToolTip(stopOctoServButton, "Остановка сервера");
-            Prompter.SetToolTip(sendRequestButton, "Выполнить запрос");
-            Prompter.SetToolTip(workSpace_dataBasesListPanel_header_refreshButton, "Обновить список баз данных");
+            Prompter.SetToolTip(startOctoServButton, Properties.Resources.PrompterStartBtnText);
+            Prompter.SetToolTip(stopOctoServButton, Properties.Resources.PrompterStopBtnText);
+            Prompter.SetToolTip(sendRequestButton, Properties.Resources.PrompterExecBtnText);
+            Prompter.SetToolTip(workSpace_dataBasesListPanel_header_refreshButton, Properties.Resources.PrompterRefreshDBBtnText);
         }
     }
 }
