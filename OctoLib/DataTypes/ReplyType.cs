@@ -11,6 +11,7 @@ namespace OctoLib.DataTypes
         Success,
         Error,
         Data,
-        Information
+        Information,
+        Null
     }
 }

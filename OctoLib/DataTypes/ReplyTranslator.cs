@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OctoLib.DataTypes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,14 +13,30 @@ namespace OctoLib
         {
             var chunks = message.Split('~');
             if(chunks.Length < 2 )
-                return new Reply("er", "Ошибка ответа");
+                return new Reply(ReplyType.Error, "Ошибка ответа");
             if (chunks[1][0] != '{')
                 if (chunks.Length > 2 && message.Contains('{'))
-                    return new Reply(chunks[0], chunks[1], ToDictionary(message));
+                    return new Reply(ToReplyType(chunks[0]), chunks[1], ToDictionary(message));
                 else
-                    return new Reply(chunks[0], chunks[1]);
+                    return new Reply(ToReplyType(chunks[0]), chunks[1]);
             else
-                return new Reply(chunks[0], ToDictionary(message));
+                return new Reply(ToReplyType(chunks[0]), ToDictionary(message));
+        }
+
+        static ReplyType ToReplyType(string repTypeStr)
+        {
+            switch (repTypeStr)
+            {
+                case "Success":
+                    return ReplyType.Success;
+                case "Error":
+                    return ReplyType.Error;
+                case "Data":
+                    return ReplyType.Data;
+                case "Information":
+                    return ReplyType.Information;
+            }
+            return ReplyType.Null;
         }
 
         static Dictionary<string, string> ToDictionary(string message)
@@ -39,7 +56,7 @@ namespace OctoLib
 
         public static string ReplyToString(Reply reply)
         {
-            string replyString = reply.replyType+'~';
+            string replyString = ReplyTypeToString(reply.replyType)+'~';
             if(reply.replyMessage != null)
                 replyString += (reply.replyMessage + "~");
             if(reply.data != null)
@@ -62,6 +79,21 @@ namespace OctoLib
                 }
             }
             return dictString;
+        }
+        static string ReplyTypeToString(ReplyType replyType)
+        {
+            switch (replyType)
+            {
+                case ReplyType.Success:
+                    return "Success";
+                case ReplyType.Error:
+                    return "Error";
+                case ReplyType.Data:
+                    return "Data";
+                case ReplyType.Information:
+                    return "Information";
+            }
+            return "Null";
         }
     }
 }

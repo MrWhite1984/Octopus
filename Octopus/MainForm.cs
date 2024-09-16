@@ -1,4 +1,5 @@
 ﻿using OctoLib;
+using OctoLib.DataTypes;
 using Octopus.Elements.Buttons.Behavior;
 using Octopus.Elements.Tables;
 using Octopus.Elements.ToolStrip.ToolStripMenuItems;
@@ -76,17 +77,17 @@ namespace Octopus
                         lineNumber -= chunks[i].Length / 186;
                     string request = chunks[lineNumber];
                     var reply = NetHandler.Send(RequestCodeFormatter.FormatRequest(request));
-                    if (reply.replyType == "sc" || reply.replyType == "inf")
+                    if (reply.replyType == ReplyType.Success || reply.replyType == ReplyType.Information)
                     {
                         workSpaceTabControl_bottomPanel.SelectedIndex = 1;
                         consoleTabPage_console.Text = TextHandler.FormatToTextBox(reply.replyMessage);
                     }
-                    else if (reply.replyType == "er")
+                    else if (reply.replyType == ReplyType.Error)
                     {
                         workSpaceTabControl_bottomPanel.SelectedIndex = 1;
                         consoleTabPage_console.Text = TextHandler.FormatToTextBox(reply.replyMessage);
                     }
-                    else if (reply.replyType == "dt")
+                    else if (reply.replyType == ReplyType.Data)
                     {
                         workSpaceTabControl_bottomPanel.SelectedIndex = 0;
                         tabControl_bottomPanel_tableTabPage.Controls.Clear();
@@ -104,12 +105,12 @@ namespace Octopus
         private void dbSelector_SelectedValueChanged(object sender, EventArgs e)
         {
             var reply = NetHandler.Send("3 " + dbSelector.Text.Remove(dbSelector.Text.Length - 5));
-            if (reply.replyType == "sc" || reply.replyType == "inf")
+            if (reply.replyType == ReplyType.Success || reply.replyType == ReplyType.Information)
             {
                 workSpaceTabControl_bottomPanel.SelectedIndex = 1;
                 consoleTabPage_console.Text = TextHandler.FormatToTextBox(reply.replyMessage);
             }
-            else if (reply.replyType == "er")
+            else if (reply.replyType == ReplyType.Error)
             {
                 workSpaceTabControl_bottomPanel.SelectedIndex = 1;
                 consoleTabPage_console.ForeColor = Color.Red;
