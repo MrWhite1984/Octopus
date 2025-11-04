@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Octopus.Properties {
+namespace OctoServ.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Octopus.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Octopus.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OctoServ.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,78 +61,29 @@ namespace Octopus.Properties {
         }
         
         /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        ///   Ищет локализованную строку, похожую на Ошибочный запрос.
         /// </summary>
-        internal static System.Drawing.Bitmap ExecBtn {
+        internal static string InvalidRequestText {
             get {
-                object obj = ResourceManager.GetObject("ExecBtn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("InvalidRequestText", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Выполнить запрос.
+        ///   Ищет локализованную строку, похожую на OctoServConfig.json.
         /// </summary>
-        internal static string PrompterExecBtnText {
+        internal static string OctoServConfigFileName {
             get {
-                return ResourceManager.GetString("PrompterExecBtnText", resourceCulture);
+                return ResourceManager.GetString("OctoServConfigFileName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Обновить список баз данных.
+        ///   Ищет локализованную строку, похожую на Неизвестная команда.
         /// </summary>
-        internal static string PrompterRefreshDBBtnText {
+        internal static string UnknownCommandText {
             get {
-                return ResourceManager.GetString("PrompterRefreshDBBtnText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Запуск сервера.
-        /// </summary>
-        internal static string PrompterStartBtnText {
-            get {
-                return ResourceManager.GetString("PrompterStartBtnText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Остановка сервера.
-        /// </summary>
-        internal static string PrompterStopBtnText {
-            get {
-                return ResourceManager.GetString("PrompterStopBtnText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap RefreshDBBtn {
-            get {
-                object obj = ResourceManager.GetObject("RefreshDBBtn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StartServerBtn {
-            get {
-                object obj = ResourceManager.GetObject("StartServerBtn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap StopServerBtn {
-            get {
-                object obj = ResourceManager.GetObject("StopServerBtn", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("UnknownCommandText", resourceCulture);
             }
         }
     }

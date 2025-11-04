@@ -138,6 +138,7 @@
             this.MaximizeBox = false;
             this.Name = "OctopusSettings";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Octopus Настройки";
             this.Load += new System.EventHandler(this.OctopusSettings_Load);
             this.ResumeLayout(false);

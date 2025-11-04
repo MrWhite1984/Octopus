@@ -1,4 +1,5 @@
 ﻿using OctoLib;
+using OctoLib.DataTypes;
 
 namespace OctoServ
 {
@@ -71,7 +72,7 @@ namespace OctoServ
                         break;
 
                     default:
-                        TextFormatter.WriteLineRed("Неизвестная команда");
+                        TextFormatter.WriteLineRed(Properties.Resources.UnknownCommandText);
                         break;
                 }
             }
@@ -88,7 +89,7 @@ namespace OctoServ
                                 else
                                 {
                                     reply = DataBaseHandler.CreateDB(chunks[2]);
-                                    if(reply.replyType == "er")
+                                    if(reply.replyType == ReplyType.Error)
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
                                         TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -97,7 +98,7 @@ namespace OctoServ
                             case ("БАЗУ"):
                                 if(chunks[2].ToUpper() != "ДАННЫХ")
                                 {
-                                    TextFormatter.WriteLineRed("Неизвестная команда");
+                                    TextFormatter.WriteLineRed(Properties.Resources.UnknownCommandText);
                                     break;
                                 }
                                 if (chunks.Count() <= 4)
@@ -105,7 +106,7 @@ namespace OctoServ
                                 else
                                 {
                                     reply = DataBaseHandler.CreateDB(chunks[3]);
-                                    if (reply.replyType == "er")
+                                    if (reply.replyType == ReplyType.Error)
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
                                         TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -115,7 +116,7 @@ namespace OctoServ
                             case ("СЛОВАРЬ"):
                                 if (chunks.Count() <= 2)
                                 {
-                                    TextFormatter.WriteLineRed("Ошибочный запрос");
+                                    TextFormatter.WriteLineRed(Properties.Resources.InvalidRequestText);
                                     break;
                                 }
                                 if (DataBaseHandler.usingDb == "")
@@ -124,7 +125,7 @@ namespace OctoServ
                                     break;
                                 }
                                 reply = DataBaseHandler.CreateDictionary(chunks[2]);
-                                if (reply.replyType == "er")
+                                if (reply.replyType == ReplyType.Error)
                                     TextFormatter.WriteLineRed(reply.replyMessage!);
                                 else
                                     TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -132,7 +133,7 @@ namespace OctoServ
 
 
                             default:
-                                TextFormatter.WriteLineRed("Неизвестная команда");
+                                TextFormatter.WriteLineRed(Properties.Resources.UnknownCommandText);
                                 break;
                         }
                         break;
@@ -146,7 +147,7 @@ namespace OctoServ
                                 else
                                 {
                                     reply = DataBaseHandler.CreateDB(chunks[2]);
-                                    if (reply.replyType == "er")
+                                    if (reply.replyType == ReplyType.Error)
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
                                         TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -158,14 +159,14 @@ namespace OctoServ
                                 else
                                 {
                                     reply = DataBaseHandler.CreateDB(chunks[2]);
-                                    if (reply.replyType == "er")
+                                    if (reply.replyType == ReplyType.Error)
                                         TextFormatter.WriteLineRed(reply.replyMessage!);
                                     else
                                         TextFormatter.WriteLineBlue(reply.replyMessage!);
                                 }
                                 break;
                             default:
-                                TextFormatter.WriteLineRed("Неизвестная команда");
+                                TextFormatter.WriteLineRed(Properties.Resources.UnknownCommandText);
                                 break;
                         }
                         break;
@@ -212,7 +213,7 @@ namespace OctoServ
                                         break;
                                     }
                                     Program.configuration.port = newPort;
-                                    File.WriteAllText("OctoServConfig.json", Configuration.SetConfiguration(Program.configuration));
+                                    File.WriteAllText(Properties.Resources.OctoServConfigFileName, Configuration.SetConfiguration(Program.configuration));
                                     TextFormatter.WriteLineYellow("Порт изменен\nДля работы новых настроек перезапутите сервер");
                                 }
                                 catch (Exception ex)
@@ -239,14 +240,14 @@ namespace OctoServ
                                     break;
                                 }
                                 Program.configuration.octopusFilesPath = chunks[2];
-                                File.WriteAllText("OctoServConfig.json", Configuration.SetConfiguration(Program.configuration));
+                                File.WriteAllText(Properties.Resources.OctoServConfigFileName, Configuration.SetConfiguration(Program.configuration));
                                 TextFormatter.WriteLineYellow("Путь изменен\nДля работы новых настроек перезапутите сервер");
                                 break;
 
                             case ("НАЗВАНИЕ"):
                                 if (chunks.Count() == 2)
                                 {
-                                    TextFormatter.WriteLineRed("Ошибочный запрос");
+                                    TextFormatter.WriteLineRed(Properties.Resources.InvalidRequestText);
                                     break;
                                 }
                                 switch (chunks[2].ToUpper())
@@ -258,7 +259,7 @@ namespace OctoServ
                                             break;
                                         }
                                         reply = DataBaseHandler.RenameDB(chunks[3]);
-                                        if (reply.replyType == "er")
+                                        if (reply.replyType == ReplyType.Error)
                                         {
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
                                             break;
@@ -269,7 +270,7 @@ namespace OctoServ
                                     case ("БАЗЫ"):
                                         if (chunks.Count() <= 4 || chunks[3].ToUpper() != "ДАННЫХ")
                                         {
-                                            TextFormatter.WriteLineRed("Ошибочный запрос");
+                                            TextFormatter.WriteLineRed(Properties.Resources.InvalidRequestText);
                                             break;
                                         }
                                         if (DataBaseHandler.usingDb == "")
@@ -278,7 +279,7 @@ namespace OctoServ
                                             break;
                                         }
                                         reply = DataBaseHandler.RenameDB(chunks[4]);
-                                        if (reply.replyType == "er")
+                                        if (reply.replyType == ReplyType.Error)
                                         {
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
                                             break;
@@ -287,7 +288,7 @@ namespace OctoServ
                                         break;
 
                                     default:
-                                        TextFormatter.WriteLineRed("Неизвестная команда");
+                                        TextFormatter.WriteLineRed(Properties.Resources.UnknownCommandText);
                                         break;
                                 }
                                 break;
@@ -297,7 +298,7 @@ namespace OctoServ
                     case ("ПОЛУЧИТЬ"):
                         if(chunks.Count() <= 2)
                         {
-                            TextFormatter.WriteLineRed("Ошибочный запрос");
+                            TextFormatter.WriteLineRed(Properties.Resources.InvalidRequestText);
                             break;
                         }
                         switch (chunks[1].ToUpper())
@@ -307,7 +308,7 @@ namespace OctoServ
                                 {
                                     case ("БД"):
                                         reply = DataBaseHandler.GetAllDB();
-                                        if (reply.replyType == "er")
+                                        if (reply.replyType == ReplyType.Error)
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
                                         else
                                             TextFormatter.WriteLineYellow(reply.replyMessage!);
@@ -315,11 +316,11 @@ namespace OctoServ
                                     case ("БАЗ"):
                                         if(chunks.Count() <= 3 || chunks[3].ToUpper() != "ДАННЫХ")
                                         {
-                                            TextFormatter.WriteLineRed("Ошибочный запрос");
+                                            TextFormatter.WriteLineRed(Properties.Resources.InvalidRequestText);
                                             break;
                                         }
                                         reply = DataBaseHandler.GetAllDB();
-                                        if(reply.replyType == "er")
+                                        if(reply.replyType == ReplyType.Error)
                                             TextFormatter.WriteLineRed(reply.replyMessage!); 
                                         else
                                             TextFormatter.WriteLineYellow(reply.replyMessage!);
@@ -331,7 +332,7 @@ namespace OctoServ
                                             break;
                                         }
                                         reply = DataBaseHandler.GetAllDictionaryFromDB();
-                                        if (reply.replyType == "er")
+                                        if (reply.replyType == ReplyType.Error)
                                             TextFormatter.WriteLineRed(reply.replyMessage!);
                                         else
                                             TextFormatter.WriteLineYellow(reply.replyMessage!);
@@ -368,7 +369,7 @@ namespace OctoServ
                                 }
                                 string dictName = toTableChunks[2];
                                 reply = DataBaseHandler.AddDataToDictionary(kvPair[0], kvPair[1], dictName);
-                                if (reply.replyType == "er")
+                                if (reply.replyType == ReplyType.Error)
                                     TextFormatter.WriteLineRed(reply.replyMessage!);
                                 else
                                     TextFormatter.WriteLineBlue(reply.replyMessage!);
@@ -378,7 +379,7 @@ namespace OctoServ
                     
 
                     default:
-                        TextFormatter.WriteLineRed("Неизвестная команда");
+                        TextFormatter.WriteLineRed(Properties.Resources.UnknownCommandText);
                         break;
                 }
             }

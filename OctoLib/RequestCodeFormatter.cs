@@ -22,12 +22,25 @@ namespace OctoLib
                 chunksUpperCase[0] == "0")
                 reply = "0";
             else if (chunksUpperCase[0] == "CONF" ||
-                chunksUpperCase[0] == "CONFIGURATION")
+                chunksUpperCase[0] == "CONFIGURATION"||
+                chunksUpperCase[0] == "КОНФИГ"||
+                chunksUpperCase[0] == "КОНФИГУРАЦИЯ")
                 reply = "1";
             else if (chunksUpperCase[0] == "ИЗМЕНИТЬ" ||
                 chunksUpperCase[0] == "CHANGE")
             {
-
+                if(chunksUpperCase.Count == 3 && (chunksUpperCase[1] == "PORT") ||
+                    chunksUpperCase[1] == "ПОРТ")
+                {
+                    reply = "11 " + chunksUpperCase[2];
+                }
+                else if(chunksUpperCase.Count == 5 && (chunksUpperCase[1] == "ПУТЬ"||
+                    chunksUpperCase[1] == "PATH") &&
+                    (chunksUpperCase[2] == "К" ||
+                    chunksUpperCase[2] == "TO") &&
+                    (chunksUpperCase[3] == "ДАННЫМ" ||
+                    chunksUpperCase[3] == "DATA"))
+                    reply = "12 " + chunksUpperCase[4];
             }
             else if (chunksUpperCase[0] == "СОЗДАТЬ" ||
                 chunksUpperCase[0] == "CREATE")
@@ -35,28 +48,16 @@ namespace OctoLib
                     chunksUpperCase[1] == "DB" ||
                     chunksUpperCase[1] == "DATABASE"))
                 {
-                    reply = "21 ";
-                    for (int i = 2; i < chunks.Length; i++)
-                    {
-                        reply += chunks[i];
-                    }
+                    reply = "21 "+ chunks[2];
                 }
                 else if (chunks.Length > 3 && chunksUpperCase[1] == "БАЗУ" && chunksUpperCase[1] == "ДАННЫХ")
                 {
-                    reply = "21 ";
-                    for (int i = 2; i < chunks.Length; i++)
-                    {
-                        reply += chunks[i];
-                    }
+                    reply = "21 " + chunks[3];
                 }
                 else if (chunks.Length > 2 &&
                     (chunksUpperCase[1] == "СЛОВАРЬ" || chunksUpperCase[1] == "DICTIONARY"))
                 {
-                    reply = "22 ";
-                    for (int i = 2; i < chunks.Length; i++)
-                    {
-                        reply += chunks[i];
-                    }
+                    reply = "22 " + chunks[2];
                 }
                 else
                 {
@@ -75,7 +76,7 @@ namespace OctoLib
                             reply = "51";
                     }  
                     else if (chunks.Length > 3 && (chunks[1].ToUpper() == "ВСЕ"||
-                        chunks[1].ToUpper() == "*"||
+                        chunks[1] == "*"||
                         chunks[1].ToUpper() == "ALL") && 
                         (chunks[2].ToUpper() == "FROM" ||
                         chunks[2].ToUpper() == "ИЗ"))

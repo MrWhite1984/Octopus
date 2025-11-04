@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Octp.ico</ApplicationIcon>
+    <ApplicationIcon>OctopusIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -107,6 +107,12 @@
     <Compile Include="Forms\OctopusSettings.Designer.cs">
       <DependentUpon>OctopusSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\OctoServSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OctoServSettings.Designer.cs">
+      <DependentUpon>OctoServSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,9 @@
     <EmbeddedResource Include="Forms\OctopusSettings.resx">
       <DependentUpon>OctopusSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OctoServSettings.resx">
+      <DependentUpon>OctoServSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +140,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -154,7 +164,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="download.ico" />
-    <Content Include="Octp.ico" />
+    <Content Include="OctopusIcon.ico" />
+    <None Include="Resources\RefreshDBBtn.png" />
+    <None Include="Resources\ExecBtn1.png" />
+    <None Include="Resources\StopServerBtn1.png" />
+    <None Include="Resources\StartServerBtn1.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.8">
