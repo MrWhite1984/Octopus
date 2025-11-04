@@ -66,8 +66,9 @@ namespace OctoServ
                                 replyToClient = new Reply(ReplyType.Error, "Неверный порт");
                                 break;
                             }
-                            Program.configuration.port = newPort;
-                            File.WriteAllText(Properties.Resources.OctoServConfigFileName, Configuration.SetConfiguration(Program.configuration));
+                            Configuration configuration = Configuration.GetConfiguration();
+                            configuration.port = newPort;
+                            File.WriteAllText(Properties.Resources.OctoServConfigFileName, Configuration.SetConfiguration(configuration));
                             replyToClient = new Reply(ReplyType.Success, "Порт изменен\nДля работы новых настроек перезапутите сервер");
                         }
                         catch
@@ -79,16 +80,17 @@ namespace OctoServ
                     break;
                 case "12":
                     if (chunks.Count() < 2)
-                        replyToClient = new Reply(ReplyType.Error, "Не указан новый порт");
+                        replyToClient = new Reply(ReplyType.Error, "Не указан новый путь");
                     else
                     {
                         if (!Directory.Exists(chunks[2]))
                         {
-                            TextFormatter.WriteLineRed("Указанный путь не найден");
+                            replyToClient = new Reply(ReplyType.Error, "Указанный путь не найден");
                             break;
                         }
-                        Program.configuration.octopusFilesPath = chunks[2];
-                        File.WriteAllText(Properties.Resources.OctoServConfigFileName, Configuration.SetConfiguration(Program.configuration));
+                        Configuration configuration = Program.configuration;
+                        configuration.octopusFilesPath = chunks[2];
+                        File.WriteAllText(Properties.Resources.OctoServConfigFileName, Configuration.SetConfiguration(configuration));
                         replyToClient = new Reply(ReplyType.Success, "Путь изменен\nДля работы новых настроек перезапутите сервер");
                         break;
                     }

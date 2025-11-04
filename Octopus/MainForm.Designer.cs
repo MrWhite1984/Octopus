@@ -36,6 +36,7 @@ namespace Octopus
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.designPanel1 = new System.Windows.Forms.Panel();
             this.workSpace = new System.Windows.Forms.Panel();
             this.inputConsole_TextBox = new System.Windows.Forms.TextBox();
@@ -63,8 +64,8 @@ namespace Octopus
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.octoServToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.octopusToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.octoServToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.querryWizardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Prompter = new System.Windows.Forms.ToolTip(this.components);
             this.workSpace.SuspendLayout();
@@ -325,7 +326,7 @@ namespace Octopus
             this.saveToolStripMenuItem});
             this.fileToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
             this.fileToolStripMenuItem.Text = "Файл";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.FileToolStripMenuItem_Click);
             // 
@@ -354,26 +355,28 @@ namespace Octopus
             this.octopusToolStripMenuItem,
             this.octoServToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(98, 24);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(98, 26);
             this.settingsToolStripMenuItem.Text = "Настройки";
-            // 
-            // octoServToolStripMenuItem
-            // 
-            this.octoServToolStripMenuItem.Name = "octoServToolStripMenuItem";
-            this.octoServToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.octoServToolStripMenuItem.Text = "OctoServ";
             // 
             // octopusToolStripMenuItem
             // 
             this.octopusToolStripMenuItem.Name = "octopusToolStripMenuItem";
-            this.octopusToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.octopusToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.octopusToolStripMenuItem.Text = "Octopus";
             this.octopusToolStripMenuItem.Click += new System.EventHandler(this.octopusToolStripMenuItem_Click);
+            // 
+            // octoServToolStripMenuItem
+            // 
+            this.octoServToolStripMenuItem.Enabled = false;
+            this.octoServToolStripMenuItem.Name = "octoServToolStripMenuItem";
+            this.octoServToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
+            this.octoServToolStripMenuItem.Text = "OctoServ";
+            this.octoServToolStripMenuItem.Click += new System.EventHandler(this.octoServToolStripMenuItem_Click);
             // 
             // querryWizardToolStripMenuItem
             // 
             this.querryWizardToolStripMenuItem.Name = "querryWizardToolStripMenuItem";
-            this.querryWizardToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
+            this.querryWizardToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
             this.querryWizardToolStripMenuItem.Text = "Мастер запросов";
             // 
             // MainForm
@@ -384,6 +387,7 @@ namespace Octopus
             this.ClientSize = new System.Drawing.Size(1664, 968);
             this.Controls.Add(this.mainPanel);
             this.Font = new System.Drawing.Font("Calibri", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.ShowIcon = false;
             this.Text = "Octopus";

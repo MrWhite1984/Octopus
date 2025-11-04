@@ -64,6 +64,7 @@ namespace Octopus
             Thread.Sleep(50);
             netStream = tcpClient.GetStream();
             Byte[] byteResponse = new Byte[tcpClient.Available];
+            var swTotal = Stopwatch.StartNew();
             netStream.Read(byteResponse, 0, tcpClient.Available);
             return ReplyTranslator.StringToReply(Encoding.UTF8.GetString(byteResponse));
         }

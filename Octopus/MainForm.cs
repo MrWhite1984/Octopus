@@ -55,6 +55,7 @@ namespace Octopus
                     stopOctoServButton.Visible = true;
                     sendRequestButton.Enabled = true;
                     workSpace_dataBasesListPanel_header_refreshButton.Enabled = true;
+                    octoServToolStripMenuItem.Enabled = true;
                 }
             }
         }
@@ -72,6 +73,7 @@ namespace Octopus
                 stopOctoServButton.Visible = false;
                 sendRequestButton.Enabled = false;
                 workSpace_dataBasesListPanel_header_refreshButton.Enabled = false;
+                octoServToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -86,22 +88,26 @@ namespace Octopus
                     for (int i = 0; i < lineNumber; i++)
                         lineNumber -= chunks[i].Length / 186;
                     string request = chunks[lineNumber];
-                    var reply = NetHandler.Send(RequestCodeFormatter.FormatRequest(request));
-                    if (reply.replyType == ReplyType.Success || reply.replyType == ReplyType.Information)
+                    request = RequestCodeFormatter.FormatRequest(request);
+                    if(request != "")
                     {
-                        workSpaceTabControl_bottomPanel.SelectedIndex = 1;
-                        consoleTabPage_console.Text = TextHandler.FormatToTextBox(reply.replyMessage);
-                    }
-                    else if (reply.replyType == ReplyType.Error)
-                    {
-                        workSpaceTabControl_bottomPanel.SelectedIndex = 1;
-                        consoleTabPage_console.Text = TextHandler.FormatToTextBox(reply.replyMessage);
-                    }
-                    else if (reply.replyType == ReplyType.Data)
-                    {
-                        workSpaceTabControl_bottomPanel.SelectedIndex = 0;
-                        tabControl_bottomPanel_tableTabPage.Controls.Clear();
-                        tabControl_bottomPanel_tableTabPage.Controls.Add(DGVTable.CreateTable(reply.data));
+                        var reply = NetHandler.Send(request);
+                        if (reply.replyType == ReplyType.Success || reply.replyType == ReplyType.Information)
+                        {
+                            workSpaceTabControl_bottomPanel.SelectedIndex = 1;
+                            consoleTabPage_console.Text = TextHandler.FormatToTextBox(reply.replyMessage);
+                        }
+                        else if (reply.replyType == ReplyType.Error)
+                        {
+                            workSpaceTabControl_bottomPanel.SelectedIndex = 1;
+                            consoleTabPage_console.Text = TextHandler.FormatToTextBox(reply.replyMessage);
+                        }
+                        else if (reply.replyType == ReplyType.Data)
+                        {
+                            workSpaceTabControl_bottomPanel.SelectedIndex = 0;
+                            tabControl_bottomPanel_tableTabPage.Controls.Clear();
+                            tabControl_bottomPanel_tableTabPage.Controls.Add(DGVTable.CreateTable(reply.data));
+                        }
                     }
                 }
             }
@@ -154,6 +160,12 @@ namespace Octopus
             Prompter.SetToolTip(stopOctoServButton, Properties.Resources.PrompterStopBtnText);
             Prompter.SetToolTip(sendRequestButton, Properties.Resources.PrompterExecBtnText);
             Prompter.SetToolTip(workSpace_dataBasesListPanel_header_refreshButton, Properties.Resources.PrompterRefreshDBBtnText);
+        }
+
+        private void octoServToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form octoServSettingsForm = new OctoServSettings();
+            octoServSettingsForm.ShowDialog();
         }
     }
 }
